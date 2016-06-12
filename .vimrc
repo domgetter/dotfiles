@@ -23,7 +23,8 @@ set t_Co=256
 nnoremap <silent> \ :noh<CR>
 
 " make listing invisible characters pretty
-set listchars=tab:!·,trail:·,precedes:·
+" Cygwin -> CentOS incompatibility?
+" set listchars=tab:!·,trail:·,precedes:·
 
 " set color scheme to spacegray
 " Available from https://github.com/ajh17/Spacegray.vim
@@ -31,8 +32,9 @@ set listchars=tab:!·,trail:·,precedes:·
 colo spacegray
 
 " give visual feedback of indentation
-let g:indentLine_color_term = 235
-let g:indentLine_char = '│'
+" Cygwin -> CentOS incompatibility?
+" let g:indentLine_color_term = 235
+" let g:indentLine_char = '│'
 
 "" Functionality
 
@@ -70,12 +72,13 @@ vmap <silent> <leader>S :ruby RapelClient.send_and_print_below<CR>
 
 "" Plugins
 
+" Available from  https://github.com/junegunn/vim-plug
+
 call plug#begin('~/.vim/plugged')
 
 " One of these is preventing > 80 column typing, and I don't know which one. It's not polyglot as far as I can tell
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'domgetter/vim-rapel-client'
 Plug 'easymotion/vim-easymotion'
 Plug 'honza/vim-snippets'
 Plug 'koron/nyancat-vim'
@@ -92,7 +95,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'unblevable/quick-scope'
-Plug 'Yggdroot/indentLine'
+" Not working on Cygwin->CentOS?
+" Plug 'Yggdroot/indentLine'
+" Plug 'domgetter/vim-rapel-client'
 
 " Plugins I don't like/care about
 " Plug 'boucherm/ShowMotion'
