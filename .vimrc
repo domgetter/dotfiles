@@ -22,19 +22,20 @@ set t_Co=256
 " turn off last highlight with backslash
 nnoremap <silent> \ :noh<CR>
 
-" make listing invisible characters pretty
-" Cygwin -> CentOS incompatibility?
-" set listchars=tab:!·,trail:·,precedes:·
+if has('multi_byte')
+  set encoding=utf-8
+  " make listing invisible characters pretty
+  set listchars=tab:!·,trail:·,precedes:·
+
+  " give visual feedback of indentation
+  let g:indentLine_color_term = 235
+  let g:indentLine_char = '│'
+endif
 
 " set color scheme to spacegray
 " Available from https://github.com/ajh17/Spacegray.vim
 " or https://github.com/domgetter/Spacegray.vim
 colo spacegray
-
-" give visual feedback of indentation
-" Cygwin -> CentOS incompatibility?
-" let g:indentLine_color_term = 235
-" let g:indentLine_char = '│'
 
 "" Functionality
 
@@ -95,8 +96,11 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'unblevable/quick-scope'
-" Not working on Cygwin->CentOS?
-" Plug 'Yggdroot/indentLine'
+if has('multi_byte')
+  Plug 'Yggdroot/indentLine'
+endif
+
+" Only works if vim was compiled with Ruby
 " Plug 'domgetter/vim-rapel-client'
 
 " Plugins I don't like/care about
