@@ -1,9 +1,6 @@
 # Set prompt to curr_dir>>
 PS1='\W >> '
 
-# press tab to cycle autocomplete
-bind TAB:menu-complete
-
 # 256 color Tmux 
 export TERM=xterm-256color
 

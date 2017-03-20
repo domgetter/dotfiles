@@ -1,6 +1,13 @@
-# Partial input filtering
+# History Filtering
 #
-# arrow up
+# arrow up to go through history
 "\e[A":history-search-backward
-# arrow down
+# arrow down to go other direction
 "\e[B":history-search-forward
+
+# Autocompletion
+#
+# press tab to cycle autocomplete
+"\t":menu-complete
+# shift-tab to cycle backwards
+"\e[Z":menu-complete-backward
