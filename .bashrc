@@ -19,4 +19,5 @@ export HISTCONTROL="ignoredups"
 export HISTFILE=~/.bash_eternal_history
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Backup history to alternate file in case of history loss
+PROMPT_COMMAND="history -w ~/.bash_history_archive; history -a; $PROMPT_COMMAND"
