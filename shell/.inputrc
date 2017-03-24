@@ -11,3 +11,5 @@
 "\t":menu-complete
 # shift-tab to cycle backwards
 "\e[Z":menu-complete-backward
+# space auto-expands
+Space:magic-space
