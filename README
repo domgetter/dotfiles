@@ -1,0 +1,1 @@
+To install these, clone this repo to your home directory, install GNU stow, and run stow dirname for each project.
