@@ -48,3 +48,10 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 # Backup history to alternate file in case of history loss
 PROMPT_COMMAND="history -a ~/.bash_history_archive; history -a; $PROMPT_COMMAND"
+
+export HISTSIZE=0
+export HISTFILESIZE=0
+export HISTSIZE=
+export HISTFILESIZE=
+history -r ~/.bash_history_archive
+echo "Loaded $((`wc -l < .bash_history_archive | cut -f 1 -d ' '` / 2)) lines of history"
