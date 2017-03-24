@@ -38,20 +38,39 @@ fi
 
 # Eternal bash history.
 # ---------------------
+#
+# relevant links:
 # http://stackoverflow.com/questions/9457233/unlimited-bash-history
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+# http://superuser.com/questions/20900/bash-history-loss
+
 # Adds timestamp to command
 export HISTTIMEFORMAT="[%F %T] "
+
+# WARNING: Setting HISTFILESIZE will truncate HISTFILE to whatever HISTFILESIZE gets set to.
+# 
+#   To prevent history loss, be sure to set HISTFILE to something other than the default, 
+#     and be sure to save commands to a separate, alternate file for use as your "real" history.
+#     This is achieved here by setting HISTFILE to ~/.bash_eternal_history, and by setting
+#     the PROMPT_COMMAND to run `history -a ~/.bash_history_archive`.  The archive is loaded
+#     afterward by clearing out the existing in-memory history and reading in the archive.
+#     While not necessary for saving the archive, it makes the archive available to the 
+#     `history` command.
+
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
-# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
 export HISTFILE=~/.bash_eternal_history
 # Force prompt to write history after every command.
-# http://superuser.com/questions/20900/bash-history-loss
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Backup history to alternate file in case of history loss
-PROMPT_COMMAND="history -a ~/.bash_history_archive; history -a; $PROMPT_COMMAND"
-
+PROMPT_COMMAND="history -a ~/.bash_history_archive; $PROMPT_COMMAND"
+# clear out in-memory history and saved history.
+# WARNING: These two lines WILL clear out your existing history if it is not saved elsewhere!!!
 export HISTSIZE=0
 export HISTFILESIZE=0
+# set in-memory history and saved history sizes back to "infinity"
 export HISTSIZE=
 export HISTFILESIZE=
+# read "real" history from "real" history file
 history -r ~/.bash_history_archive
+# display number of commands loaded.  This is super optional, but I like seeing it.
 echo "Loaded $((`wc -l < .bash_history_archive | cut -f 1 -d ' '` / 2)) lines of history"
