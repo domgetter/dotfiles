@@ -70,7 +70,13 @@ export HISTFILESIZE=0
 # set in-memory history and saved history sizes back to "infinity"
 export HISTSIZE=
 export HISTFILESIZE=
+# get timestamp before loading history
+let ms=$(($(date +%s%N)/1000))
 # read "real" history from "real" history file
 history -r ~/.bash_history_archive
-# display number of commands loaded.  This is super optional, but I like seeing it.
-echo "Loaded $((`wc -l < .bash_history_archive | cut -f 1 -d ' '` / 2)) lines of history"
+# calculate time taken to load history in ms
+ms=$(($(($(($(date +%s%N)/1000))-$ms))/1000))
+# calculate number of lines loaded
+let lines=$((`wc -l < .bash_history_archive | cut -f 1 -d ' '` / 2))
+# display number of commands loaded and time taken.  This is super optional, but I like seeing it.
+echo "Loaded $lines lines of history in $ms ms"
