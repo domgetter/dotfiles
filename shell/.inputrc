@@ -12,4 +12,6 @@
 # shift-tab to cycle backwards
 "\e[Z":menu-complete-backward
 # space auto-expands
-Space:magic-space
+$if Bash
+  Space:magic-space
+$endif
