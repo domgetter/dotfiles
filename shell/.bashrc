@@ -77,6 +77,6 @@ history -r ~/.bash_history_archive
 # calculate time taken to load history in ms
 ms=$(($(($(($(date +%s%N)/1000))-$ms))/1000))
 # calculate number of lines loaded
-let lines=$((`wc -l < .bash_history_archive | cut -f 1 -d ' '` / 2))
+let lines=$((`wc -l < ~/.bash_history_archive | cut -f 1 -d ' '` / 2))
 # display number of commands loaded and time taken.  This is super optional, but I like seeing it.
 echo "Loaded $lines lines of history in $ms ms"
